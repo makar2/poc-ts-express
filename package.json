@@ -1,12 +1,15 @@
 {
   "name": "sample-ts-express",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "start:dev": "nodemon ./bin/www"
+    "start": "node ./bin/www.js",
+    "start:dev": "nodemon --exec babel-node ./bin/www.js"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -15,6 +18,8 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
     "nodemon": "^2.0.12"
   }
 }
