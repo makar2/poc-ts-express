@@ -1,21 +1,16 @@
 import createError from 'http-errors';
 import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import indexRouter from './routes/index';
+import usersRouter from './routes/users';
 
 var app = express();
 
-// 2 lines below added per this answer: https://stackoverflow.com/a/64383997
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 // view engine setup
-app.set('views', join(__dirname, 'views'));
+app.set('views', join(__dirname, '..', 'src', 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -23,18 +18,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, '..', 'src', 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(req: any, res: any, next: any) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err: any, req: any, res: any) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
