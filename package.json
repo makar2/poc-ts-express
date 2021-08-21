@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "start": "nodemon --watch ./src --exec 'tsc && ts-node ./dist/bin/www.js'"
+    "build": "tsc --build --watch",
+    "start": "nodemon --watch src/ -e ts --exec 'tsc && ts-node ./dist/bin/www.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
