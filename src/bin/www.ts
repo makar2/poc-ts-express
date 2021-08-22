@@ -6,7 +6,7 @@
 
 import debugPkg from 'debug';
 import { createServer } from 'http';
-import app from '@/app';
+import app from '../app';
 
 const debug = debugPkg('sample-ts-express:server');
 
