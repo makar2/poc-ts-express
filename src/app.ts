@@ -7,7 +7,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
-var app = express();
+const app: any = express();
 
 // view engine setup
 app.set('views', join(__dirname, '..', 'src', 'views'));
@@ -20,16 +20,17 @@ app.use(cookieParser());
 
 app.use(express.static(join(__dirname, '..', 'src', 'public')));
 
+app.get('/favicon.ico', (req: any, res: any) => res.status(204));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req: any, res: any, next: any) {
+app.use((req: any, res: any, next: any) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: any, req: any, res: any) {
+app.use((err: any, req: any, res: any) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

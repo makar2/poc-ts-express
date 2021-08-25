@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "tsc --build --watch",
-    "start": "nodemon --watch src/ -e ts --exec 'tsc && ts-node ./dist/bin/www.js'"
+    "start": "nodemon --watch src/ -e ts --exec 'tsc && ts-node ./dist/bin/www.js'",
+    "lint": "eslint ./src/*/**.ts"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -22,6 +23,12 @@
     "@types/http-errors": "^1.8.1",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.24.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5"
