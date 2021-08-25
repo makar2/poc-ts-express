@@ -7,7 +7,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
-const app = express();
+const app: any = express();
 
 // view engine setup
 app.set('views', join(__dirname, '..', 'src', 'views'));
@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(express.static(join(__dirname, '..', 'src', 'public')));
 
-app.get('/favicon.ico', (req, res) => res.status(204));
+app.get('/favicon.ico', (req: any, res: any) => res.status(204));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
