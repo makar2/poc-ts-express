@@ -1,5 +1,5 @@
 import createError from 'http-errors';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -7,7 +7,9 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 
-const app: any = express();
+import { Err } from '@/types/global.types';
+
+const app = express();
 
 // view engine setup
 app.set('views', join(__dirname, '..', 'src', 'views'));
@@ -20,17 +22,17 @@ app.use(cookieParser());
 
 app.use(express.static(join(__dirname, '..', 'src', 'public')));
 
-app.get('/favicon.ico', (req: any, res: any) => res.status(204));
+app.get('/favicon.ico', (req, res) => res.status(204));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use((req: any, res: any, next: any) => {
+app.use((req, res, next: NextFunction) => {
   next(createError(404));
 });
 
 // error handler
-app.use((err: any, req: any, res: any) => {
+app.use((err: Err, req: Request, res: Response) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -7,6 +7,7 @@
 import debugPkg from 'debug';
 import { createServer } from 'http';
 import app from '@/app';
+import { Addr, Err } from './www.types';
 
 const debug = debugPkg('sample-ts-express:server');
 
@@ -47,7 +48,7 @@ app.set('port', PORT);
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error: any) {
+function onError(error: Err) {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -76,10 +77,10 @@ function onError(error: any) {
  */
 
 function onListening() {
-  const addr: any = server.address();
+  const addr: Addr = server.address();
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
-    : `port ${addr.port}`;
+    : `port ${addr?.port}`;
   debug(`Listening on ${bind}`);
 }
 
