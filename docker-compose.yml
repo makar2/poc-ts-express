@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  ts-express:
+    image: ${NODE_IMAGE_NAME:-ts-express}
+    build: .
+    ports:
+        - 3000:3000
